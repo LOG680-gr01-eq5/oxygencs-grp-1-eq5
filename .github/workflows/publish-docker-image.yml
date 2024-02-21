@@ -20,7 +20,7 @@ jobs:
           python-version: "3.8"
       - name: Install dependencies
         run: |
-          pip install --user pipenv
+          pip install pipenv
           pipenv install
       - name: Test code
         run: |
@@ -31,10 +31,10 @@ jobs:
           fi
       - name: Lint code
         run: |
-          pipenv run lint
+          !PYTHONPATH='.' pipenv run lint
       - name: Format code
         run: |
-          pipenv run format
+          !PYTHONPATH='.' pipenv run format
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
