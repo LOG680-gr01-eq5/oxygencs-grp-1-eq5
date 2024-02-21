@@ -14,9 +14,6 @@ WORKDIR /app
 
 COPY . .
 
-RUN pipenv install
-RUN pipenv run test
-RUN pipenv run lint
-RUN pipenv run format
+RUN pipenv install --deploy --ignore-pipfile
 
 CMD ["pipenv", "run", "start"]

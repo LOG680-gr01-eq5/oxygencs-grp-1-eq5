@@ -12,6 +12,30 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.8"
+      - name: Install dependencies
+        run: |
+          pip install pipenv
+          pipenv install
+      - name: Test code
+        run: |
+          pipenv run test
+          if [ $? -ne 0 ]; then
+            echo "Tests failed, stopping workflow"
+            exit 1
+          fi
+      - name: Lint code
+        run: |
+          pipenv run lint
+      - name: Format code
+        run: |
+          pipenv run format
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
