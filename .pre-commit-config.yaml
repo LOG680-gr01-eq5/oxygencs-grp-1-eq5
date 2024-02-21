@@ -1,1 +1,23 @@
-## To implement
+repos:
+  - repo: local
+    hooks:
+      - id: pipenv-run-format
+        name: "pipenv run format"
+        language: system
+        entry: pipenv run format
+        pass_filenames: false
+        types: [python]
+
+      - id: pipenv-run-lint
+        name: "pipenv run lint"
+        language: system
+        entry: pipenv run lint
+        pass_filenames: false
+        types: [python]
+
+      - id: pipenv-run-test
+        name: "pipenv run test"
+        language: system
+        entry: pipenv run test
+        pass_filenames: false
+        types: [python]

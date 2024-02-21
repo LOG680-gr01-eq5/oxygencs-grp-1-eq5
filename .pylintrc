@@ -1,0 +1,7 @@
+[MESSAGES CONTROL]
+
+disable=C0114,C0115,C0103,C0121,W0718,W3101,W0612,W0613,C0411
+
+[FORMAT]
+
+import-order-style=google
