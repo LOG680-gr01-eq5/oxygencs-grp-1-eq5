@@ -15,8 +15,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Setup env file
+        env:
+          PYHTON_CODE: ${{ secrets.ENV_FILE }}
         run: |
-          echo "${{ secrets.ENV_FILE }}" > src/env.py
+          echo "$PYTHON_CODE" > src/env.py
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
