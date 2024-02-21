@@ -16,5 +16,7 @@ COPY . .
 
 RUN pipenv install --deploy --ignore-pipfile
 RUN pipenv run test
+RUN pipenv run lint
+RUN pipenv run format
 
 CMD ["pipenv", "run", "start"]
