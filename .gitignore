@@ -140,3 +140,8 @@ kubeconfig.yaml
 
 # environment variables
 src/env.py
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/oxygencs-grp-1-eq5.iml
+.idea/vcs.xml
