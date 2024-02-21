@@ -22,19 +22,16 @@ jobs:
         run: |
           pip install pipenv
           pipenv install
+          pipenv install --dev
       - name: Test code
         run: |
           pipenv run test
-          if [ $? -ne 0 ]; then
-            echo "Tests failed, stopping workflow"
-            exit 1
-          fi
       - name: Lint code
         run: |
-          !PYTHONPATH='.' pipenv run lint
+          pipenv run lint
       - name: Format code
         run: |
-          !PYTHONPATH='.' pipenv run format
+          pipenv run format
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
