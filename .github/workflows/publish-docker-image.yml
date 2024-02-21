@@ -25,4 +25,4 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/log-680:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/log-680:latest-oxygen-${{ github.run_number }}
