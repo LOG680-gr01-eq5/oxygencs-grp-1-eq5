@@ -9,30 +9,20 @@ on:
     branches:
       - main
 jobs:
-  push_to_registry:
-    name: Push Docker image to Docker Hub
+  docker:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out the repo
-        uses: actions/checkout@v4
-
-      - name: Log in to Docker Hub
-        run: echo "${{ secrets.DOCKER_TOKEN }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
         with:
-          images: yoannets/log-680
-
-      - name: Build and push Docker image
-        uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+      - name: Build and push
+        uses: docker/build-push-action@v5
         with:
-          context: .
-          file: ./Dockerfile
           push: true
-          tags: latest
-          labels: oxygen-${{ steps.meta.outputs.labels }}
-
-      - name: Log out from Docker Hub
-        run: docker logout
+          tags: ${{ secrets.DOCKER_USERNAME }}/log-680:latest
