@@ -137,3 +137,6 @@ deploy_rsa.pub
 
 # Kubernetes config
 kubeconfig.yaml
+
+# environment variables
+src/env.py
