@@ -17,9 +17,10 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: "3.12"
+          python-version: "3.8"
       - name: Install dependencies
         run: |
+          pip install tomli
           pip install pipenv
           pipenv install
           pipenv install --dev
