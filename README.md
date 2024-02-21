@@ -20,8 +20,9 @@ pipenv install
 ```
 
 ## Setup
+- Duplicate the env.exemple.py file to env.py
 
-You need to setup the following variables inside the App class:
+You need to setup the following variables inside the new env.py file:
 
 - HOST: The host of the sensor hub and HVAC system.
 - TOKEN: The token for authenticating requests.
