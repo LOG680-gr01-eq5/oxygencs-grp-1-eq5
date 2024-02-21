@@ -20,6 +20,7 @@ pipenv install
 ```
 
 ## Setup
+
 - Duplicate the env.exemple.py file to env.py
 
 You need to setup the following variables inside the new env.py file:
@@ -36,6 +37,15 @@ After setup, you can start the program with the following command:
 
 ```bash
 pipenv run start
+```
+
+## Docker
+
+Create a docker image:
+
+```
+$ docker build -t oxygen-api .
+$ docker run oxygen-api
 ```
 
 ## Logging
