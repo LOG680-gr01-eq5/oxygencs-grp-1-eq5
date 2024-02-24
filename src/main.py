@@ -99,10 +99,8 @@ class App:
             cursor.execute(sql, data)
             self.db_connection.commit()
             cursor.close()
-            pass
         except requests.exceptions.RequestException as e:
             print(e)
-            pass
 
 
 if __name__ == "__main__":
