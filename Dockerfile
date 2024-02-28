@@ -1,19 +1,18 @@
-FROM python:3.8-slim
+FROM python:3.8-slim-buster
 
-# Met à jour les paquets et installe les dépendances nécessaires pour pipenv
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    libssl-dev \
-    libffi-dev \
-    python3-dev \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN pip install pipenv
-
+RUN mkdir -p /app
 WORKDIR /app
+
+RUN apt-get update \
+    && apt-get -y install libpq-dev gcc \
+    && pip install psycopg2
+
+ENV PIPENV_VENV_IN_PROJECT=1
 
 COPY . .
 
-RUN pipenv install --deploy --ignore-pipfile
+RUN pip install --upgrade pipenv
+
+RUN pipenv sync
 
 CMD ["pipenv", "run", "start"]
