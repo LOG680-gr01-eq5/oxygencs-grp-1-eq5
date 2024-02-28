@@ -17,7 +17,7 @@ python_version = "3.8"
 
 [scripts]
 start = "python src/main.py"
-test = "python test/test.py"
+test = "pytest"
 lint = "pylint ./src"
 format = "black ./src"
 postinstall = "pre-commit install"
