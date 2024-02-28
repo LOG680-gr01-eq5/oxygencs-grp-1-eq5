@@ -18,7 +18,7 @@ jobs:
         env:
           PYHTON_CODE: ${{ secrets.ENV_FILE }}
         run: |
-          echo "$PYTHON_CODE" > src/env.py
+          echo "$ENV_FILE" > .env
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
