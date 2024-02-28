@@ -6,7 +6,6 @@ from signalrcore.hub_connection_builder import HubConnectionBuilder
 import logging
 import requests
 import json
-import env
 
 
 class App:

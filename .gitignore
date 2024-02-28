@@ -139,7 +139,7 @@ deploy_rsa.pub
 kubeconfig.yaml
 
 # environment variables
-src/env.py
+.env
 .idea/inspectionProfiles/profiles_settings.xml
 .idea/misc.xml
 .idea/modules.xml
