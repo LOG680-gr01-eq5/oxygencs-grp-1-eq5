@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup env file
         env:
-          PYHTON_CODE: ${{ secrets.ENV_FILE }}
+          ENV_FILE: ${{ secrets.ENV_FILE }}
         run: |
           echo "$ENV_FILE" > .env
       - name: Set up Python
