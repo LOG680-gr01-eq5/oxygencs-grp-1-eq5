@@ -39,11 +39,6 @@ jobs:
       - name: Format code
         run: |
           pipenv run format
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: setuped-artifact
-          path: .
       - name: Close PR if tests or lint fail
         if: ${{ failure() }}
         uses: peter-evans/close-pull@v1
@@ -57,11 +52,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Download build artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: setuped-artifact
-          path: .
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
