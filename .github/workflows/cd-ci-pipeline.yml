@@ -1,4 +1,4 @@
-name: Publish Docker image
+name: CI/CD Pipeline
 
 on:
   workflow_dispatch:
@@ -6,10 +6,11 @@ on:
     branches:
       - main
   pull_request:
-    branches:
-      - main
+    types:
+      - opened
+
 jobs:
-  docker:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -38,7 +39,29 @@ jobs:
       - name: Format code
         run: |
           pipenv run format
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: setuped-artifact
+          path: .
+      - name: Close PR if tests or lint fail
+        if: ${{ failure() }}
+        uses: peter-evans/close-pull@v1
+        with:
+          comment: "Please ensure that lint checks and tests pass."
 
+  publish-docker:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: setuped-artifact
+          path: .
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
@@ -52,4 +75,6 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/log-680:latest-oxygen-${{ github.run_number }}
+          tags: |
+            ${{ secrets.DOCKER_USERNAME }}/log680-oxygen:${{ github.run_number }}
+            ${{ secrets.DOCKER_USERNAME }}/log680-oxygen:latest
