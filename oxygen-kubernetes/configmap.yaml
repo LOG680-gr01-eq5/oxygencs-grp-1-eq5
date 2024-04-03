@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: log680-oxygen-config
+data:
+  db_user: "user01eq5"
+  db_host: "157.230.69.113"
+  db_database: "db01eq5"
+  hvac_host: "http://159.203.50.162/"

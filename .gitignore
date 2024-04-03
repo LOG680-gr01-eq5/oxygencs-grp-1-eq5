@@ -145,3 +145,7 @@ kubeconfig.yaml
 .idea/modules.xml
 .idea/oxygencs-grp-1-eq5.iml
 .idea/vcs.xml
+metric-kubernetes/secret.yaml
+oxygen-kubernetes/secret.yaml
+metric-kubernetes/kubeconf.yaml
+oxygen-kubernetes/kubeconf.yaml

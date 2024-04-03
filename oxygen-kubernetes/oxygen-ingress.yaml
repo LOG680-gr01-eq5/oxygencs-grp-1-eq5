@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: oxygen-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+    - http:
+        paths:
+          - pathType: Prefix
+            path: "/user01eq5/oxygen"
+            backend:
+              service:
+                name: oxygen-service
+                port:
+                  number: 80
