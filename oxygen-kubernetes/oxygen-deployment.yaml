@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: log680-oxygen-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: log680-oxygen
+  template:
+    metadata:
+      labels:
+        app: log680-oxygen
+    spec:
+      containers:
+      - name: log680-oxygen
+        image: yoannets/log680-oxygen:latest
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "250Mi"
+            cpu: "250m"
+          limits:
+            memory: "500Mi"
+            cpu: "500m"
+        envFrom:
+        - configMapRef:
+            name: log680-oxygen-config
+        - secretRef:
+            name: log680-oxygen-secret

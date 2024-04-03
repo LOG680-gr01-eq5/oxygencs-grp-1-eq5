@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: log680-kanban-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: log680-kanban
+  template:
+    metadata:
+      labels:
+        app: log680-kanban
+    spec:
+      containers:
+      - name: log680-kanban
+        image: yoannets/log680-kanban:latest
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "250Mi"
+            cpu: "250m"
+          limits:
+            memory: "500Mi"
+            cpu: "500m"
+        envFrom:
+        - configMapRef:
+            name: log680-kanban-config
+        - secretRef:
+            name: log680-kanban-secret
